@@ -1,12 +1,8 @@
 
-{% include 'monitoramento/partials/head.html' %}
-
-
-<body>
-    {% include 'monitoramento/partials/header.html' %}
-
-
-    <div class="maps-container">
+{% extends 'global/base.html' %}
+{% load static %}
+{% block content %}
+<div class="maps-container">
         <div class="container">
             <h1>Olá, seja bem-vindo!</h1>
 
@@ -45,7 +41,4 @@
             </div>
         </div>
     </div>
-
-    {% include 'monitoramento/partials/footer.html' %}
-</body>
-</html>
+{% endblock content %}

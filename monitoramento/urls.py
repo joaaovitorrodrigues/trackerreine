@@ -1,7 +1,8 @@
 from django.urls import path
 
-from monitoramento.views import monitoramento
+from . import views
+
 
 urlpatterns = [
-    path('', monitoramento),
+    path('', views.monitoramento),
 ]
