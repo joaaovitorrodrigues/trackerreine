@@ -3,6 +3,15 @@ from django import forms
 from django.contrib.auth.models import User
 
 class RegisterForm(forms.ModelForm):
+    confirmacao = forms.CharField(
+        required=True,
+        label='Confirmação de senha',
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Repita sua senha'
+        })
+        
+    )
+
     class Meta:
         model = User
         fields = [
