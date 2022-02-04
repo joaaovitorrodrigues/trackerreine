@@ -1,11 +1,14 @@
 {% extends 'global/base.html' %}
 
+{% block title %}<title>Reine | Cadastro </title>{% endblock title %}
 
 {% block content %}
 
     <div class="main-maps-container">
-        <h2>Registro {{ request.session.number }}</h2>
+        <h2>Cadastrar usuário {{ request.session.number }}</h2>
     </div>
+
+    {% include 'global/partials/message.html' %}
 
     <div class="main-content container">
         <form action="{% url 'users:create' %}" method="POST">
@@ -30,7 +33,7 @@
             <div class="form-content form-content-grid">
                 <div class="form-group">
                     <div class="message message-error">
-                        Por favor, corrija os erros no formulário
+                        Por favor, corrija os erros no formulário.
                     </div>
                 </div>
             </div>
@@ -46,4 +49,7 @@
         </form>
     </div>
 
+
 {% endblock content %}
+
+{% block footer %} {% endblock footer %}

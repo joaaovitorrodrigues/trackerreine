@@ -23,6 +23,12 @@ def register_create(request):
     request.session['register_form_data'] = POST
     form = RegisterForm(POST)
 
+    if form.is_valid():
+       form.save()
+       messages.success(request, 'Seu usuário foi criado, por favor, faça o login.')
+       
+       del(request.session['register_form_data'])
+       
     return redirect('users:register')
 
 

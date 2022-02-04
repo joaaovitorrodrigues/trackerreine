@@ -10,6 +10,7 @@ def add_placeholder(field, placeholder_val):
     add_attr(field, 'placeholder', placeholder_val)
 
 
+
 class RegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -28,11 +29,9 @@ class RegisterForm(forms.ModelForm):
         }),
         error_messages={
             'required': 'Senha não pode estar vazia'
-        },
-        help_text=(
-            'Sua senha precisa conter uma letra maiúscula, uma minúscula e um número. E deve conter 8 caracteres'
-        )
+        }
     )
+
 
     # Campo confirmação de senha com placeholder, mensagens de erro...
     confirmacao = forms.CharField(
@@ -65,16 +64,6 @@ class RegisterForm(forms.ModelForm):
             'password': 'Senha',
         }
 
-        widgets = {
-
-            'first_name': forms.TextInput(attrs={
-                'placeholder': 'Digite seu nome',
-                'class': 'input text-input'
-            }),
-            'password': forms.PasswordInput(attrs={
-                'placeholder': 'Digite sua senha',
-            })
-        }
 
     # Validação do campo senha
     def clean(self):
