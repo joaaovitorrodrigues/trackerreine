@@ -80,3 +80,18 @@ class UsersRegisterFormIntegrationTest(DjangoTestCase):
         response = self.client.post(url, data=self.form_data, follow=True)
 
         self.assertNotIn(msg, response.content.decode('utf-8'))
+
+    def test_send_get_requests_to_registration_create_view_returns_404(self):
+        url = reverse('users:create')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)
+
+    def test_campo_email_unico(self):
+        url = reverse('users:create')
+
+        self.client.post(url, data=self.form_data, Follow=True)
+        response = self.client.post(url, data=self.form_data, follow=True)
+
+        msg = 'Esse e-mail já está sendo utilizado'
+        self.assertIn(msg, response.context['form'].errors.get('email'))
+        self.assertIn(msg, response.content.decode('utf-8'))
