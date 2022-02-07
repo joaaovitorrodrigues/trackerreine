@@ -56,7 +56,7 @@ class UsersRegisterFormIntegrationTest(DjangoTestCase):
     ])
     def testes_campos_vazios(self, field, msg):
         self.form_data[field] = ''
-        url = reverse('users:create')
+        url = reverse('users:register_create')
         response = self.client.post(url, data=self.form_data, follow=True)
         self.assertIn(msg, response.content.decode('utf-8'))
 
@@ -65,7 +65,7 @@ class UsersRegisterFormIntegrationTest(DjangoTestCase):
         self.form_data['password'] = 'abc123zKb'
         self.form_data['confirmacao'] = 'abc1234po'
 
-        url = reverse('users:create')
+        url = reverse('users:register_create')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         msg = 'Senha e confirmação de senha não são iguais'
@@ -76,18 +76,18 @@ class UsersRegisterFormIntegrationTest(DjangoTestCase):
         self.form_data['password'] = 'abc1234po'
         self.form_data['confirmacao'] = 'abc1234po'
 
-        url = reverse('users:create')
+        url = reverse('users:register_create')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         self.assertNotIn(msg, response.content.decode('utf-8'))
 
     def test_send_get_requests_to_registration_create_view_returns_404(self):
-        url = reverse('users:create')
+        url = reverse('users:register_create')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
     def test_campo_email_unico(self):
-        url = reverse('users:create')
+        url = reverse('users:register_create')
 
         self.client.post(url, data=self.form_data, Follow=True)
         response = self.client.post(url, data=self.form_data, follow=True)
@@ -95,3 +95,21 @@ class UsersRegisterFormIntegrationTest(DjangoTestCase):
         msg = 'Esse e-mail já está sendo utilizado'
         self.assertIn(msg, response.context['form'].errors.get('email'))
         self.assertIn(msg, response.content.decode('utf-8'))
+
+    def test_users_pode_logar(self):
+        url = reverse('users:register_create')
+
+        self.form_data.update({
+            'username': 'testuser',
+            'password': 'abc123',
+            'confirmacao': 'abc123',
+        })
+
+        self.client.post(url, data=self.form_data, Follow=True)
+
+        is_authenticated = self.client.login(
+            username='testuser',
+            password='abc123',
+        )
+
+        self.assertTrue(is_authenticated)

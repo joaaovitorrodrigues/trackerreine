@@ -72,9 +72,16 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .main-maps-container {
-    background: var(--color-debug-dark);
+    background: var(--color-gray-1);
     text-align: center;
 
+}
+.plaintext-button {
+    display: inline;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--color-primary);
 }
 
 .main-header-container {
@@ -166,7 +173,7 @@ h1,h2,h3,h4,h5,h6 {
 
 /* MENSAGENS */
 
-.messages-container{
+.messages-container {
     display: flex;
     flex-flow: column nowrap;
     gap: calc(var(--spacing-gutter-medium) / 2);
@@ -252,6 +259,20 @@ h1,h2,h3,h4,h5,h6 {
     border-radius: 20px;
     align-items: center;
 }
+
+.inline-form {
+    display: inline;
+}
+
+.form button {
+    display: inline;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--color-primary);
+    font-size: 1.6rem;
+}
+
 
 @media (max-width: 60px) {
     .main-content-list,

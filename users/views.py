@@ -1,10 +1,13 @@
 
+
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from .forms import RegisterForm
+from .forms import LoginForm, RegisterForm
 
 
 def register_view(request):
@@ -12,7 +15,7 @@ def register_view(request):
     form = RegisterForm(register_form_data)
     return render(request, 'users/pages/register_view.html', {
         'form': form,
-        'form_action': reverse('users:create'),
+        'form_action': reverse('users:register_create'),
     })
 
 
@@ -32,15 +35,57 @@ def register_create(request):
             request, 'Seu usuário foi criado, por favor, faça o login.')
 
         del(request.session['register_form_data'])
+        return redirect(reverse('users:login'))
 
     return redirect('users:register')
 
 
-"""def usuarios(request):
-    request.session['number'] = request.session.get('number')
-    request.session['number'] += 1
-
-    form = RegisterForm()
-    return render(request, 'users/pages/register_view.html', {
+def login_view(request):
+    form = LoginForm()
+    return render(request, 'users/pages/login.html', {
         'form': form,
-    })"""
+        'form_action': reverse('users:login_create')
+    })
+
+
+def login_create(request):
+    if not request.POST:
+        raise Http404()
+
+    form = LoginForm(request.POST)
+    login_url = reverse('users:login')
+
+    if form.is_valid():
+        authenticated_user = authenticate(
+            username=form.cleaned_data.get('username', ''),
+            password=form.cleaned_data.get('password', ''),
+        )
+
+        if authenticated_user is not None:
+            messages.success(request, 'Você está logado.')
+            login(request, authenticated_user)
+        else:
+            messages.error(
+                request, 'Credenciais inválidas.')
+    else:
+        messages.error(request, 'Usuário ou senha inválidos.')
+
+    return redirect(login_url)
+
+# Usuario logado
+
+
+@login_required(login_url='users:login',
+                redirect_field_name='next')
+def logout_view(request):
+    # Proteção: O usuario deve estar logado, ser um POST
+    if not request.POST:
+        # Se não, retorna para o login
+        return redirect(reverse('users:login'))
+    # Proteção: O usuario deve estar logado, verificação de username
+    if request.POST.get('username') != request.user.username:
+        # Se não, retorna para o login
+        return redirect(reverse('users:login'))
+
+    logout(request)
+    return redirect(reverse('users:login'))
