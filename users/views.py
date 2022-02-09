@@ -53,7 +53,6 @@ def login_create(request):
         raise Http404()
 
     form = LoginForm(request.POST)
-    login_url = reverse('users:login')
 
     if form.is_valid():
         authenticated_user = authenticate(
@@ -70,7 +69,7 @@ def login_create(request):
     else:
         messages.error(request, 'Usuário ou senha inválidos.')
 
-    return redirect(login_url)
+    return redirect(reverse('users:dashboard'))
 
 # Usuario logado
 
@@ -89,3 +88,9 @@ def logout_view(request):
 
     logout(request)
     return redirect(reverse('users:login'))
+
+
+@login_required(login_url='users:login',
+                redirect_field_name='next')
+def dashboard(request):
+    return render(request, 'users/pages/dashboard.html')

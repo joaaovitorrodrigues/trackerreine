@@ -6,18 +6,7 @@
 
     <div class="main-maps-container">
         <h2>Login</h2>
-        {% if request.user.is_authenticated %}
-            <div>
-                Você está logado com
-                {{ request.user.username }}.
-                Por favor,
-                <form class="inline-form" action="{% url 'users:logout' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="username" value="{{ request.user.username }}">
-                    <button class="plaintext-button" type="submit">clique aqui</button>
-                </form>  para sair.
-            </div>
-        {% endif %}
+        {% include 'users/partials/login_messages.html' %}
     </div>
 
     {% include 'global/partials/message.html' %}

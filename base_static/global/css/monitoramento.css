@@ -217,6 +217,11 @@ h1,h2,h3,h4,h5,h6 {
     color: var(--color-debug-dark);
 }
 
+/* USERS */
+.login-message {
+    margin: 1rem 0;
+}
+
 /* FORMS */
 
 .form-content {
