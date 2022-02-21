@@ -1,0 +1,41 @@
+{% extends 'global/base.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h1>Grupo de veículos</h1>
+            <hr>
+            <a id="add-link" href="adicionar/">
+                <button class="btn btn-success" href="adicionar/"><i class="fa-solid fa-plus"></i> Adicionar</button>
+            </a>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID Grupo</th>
+                        <th>Nome G. Veículos</th>
+                        <th>Descrição</th>
+                        <th>E-mail</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for grupo in grupoveiculos %}
+                    <tr>
+                        <td>{{ grupo.id }}</td>
+                        <td>{{ grupo.nome_grupo }}</td>
+                        <td>{{ grupo.descricao_grupo }}</td>
+                        <td>{{ grupo.email }}</td>
+                        <td>
+                        <a id="add-link" href="editar/">
+                            <button class="btn btn-warning" href="editar/">Editar</button>
+                            <button class="btn btn-danger" href="excluir/"><i class="fa-thin fa-trash"></i> Excluir</button>
+                        </a>
+                        </td>
+                    </tr> 
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

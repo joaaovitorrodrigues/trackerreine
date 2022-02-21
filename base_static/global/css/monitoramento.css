@@ -53,11 +53,16 @@ html {
     font-size: 62.5%;
 }
 
+.map-container {
+    align-items: center;
+}
+
 body {
     font-size: 1.6rem;
     font-family: var(--font-primary);
     background: var(--color-gray-1);
 }
+
 
 h1,h2,h3,h4,h5,h6 {
     font-family: var(--font-headings);
@@ -85,7 +90,11 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .main-header-container {
-    background: var(--color-primary-dark);
+    background: var(--color-primary-hover);
+}
+
+.main-header-container h1 {
+    align-items: right;
 }
 
 .main-logo {
@@ -101,7 +110,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .main-logo-icon {
-    margin-left: 2rem;
+    margin-left: 1rem;
 }
 
 .search-form {
@@ -222,6 +231,7 @@ h1,h2,h3,h4,h5,h6 {
     margin: 1rem 0;
 }
 
+
 /* FORMS */
 
 .form-content {
@@ -294,4 +304,8 @@ h1,h2,h3,h4,h5,h6 {
     .form-content-grid {
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
+}
+
+.grid-container {
+    align-items: center;
 }

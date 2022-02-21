@@ -81,6 +81,18 @@ class Cliente(models.Model):
     cidade = models.CharField(max_length=30)
     bairro = models.CharField(max_length=30)
     complemento = models.CharField(max_length=30)
+    mensalidade = models.CharField(
+        max_length=10, default='R$ ', verbose_name="Mensalidade")
+    vencimento = models.CharField(
+        max_length=2, verbose_name="Vencimento")
+    plano = models.CharField(verbose_name="Plano",
+                             max_length=2,
+                             choices=(
+                                 ('F', 'FIT'),
+                                 ('S', 'STANDARD'),
+                                 ('P', 'PRIME'),
+                             )
+                             )
     data_cadastro = models.DateTimeField(
         default=timezone.now, verbose_name='Data de Cadastro')
 

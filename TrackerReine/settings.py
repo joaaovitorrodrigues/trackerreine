@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     # Apps
     'users.apps.UsersConfig',
     'monitoramento.apps.MonitoramentoConfig',
-    'carro.apps.CarroConfig',
     'clientes.apps.ClientesConfig',
+    'veiculos.apps.VeiculosConfig',
+    'grupoveiculos.apps.GrupoveiculosConfig',
+    'dashboard.apps.DashboardConfig',
 ]
 
 MIDDLEWARE = [
@@ -136,6 +138,8 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = BASE_DIR / 'static'
+
+GOOGLE_API_KEY = "AIzaSyDF--lFk8ATK0dY_Jc1tAcKX2axRrxvp0Q"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

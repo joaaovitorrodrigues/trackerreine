@@ -1,49 +1,57 @@
+{% load static %}
 
-{% extends 'global/base.html' %}
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block title %}<title>Reine | Monitoramento</title>{% endblock title %}
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-{% block title %}<title>Reine | Monitoramento</title>{% endblock title %}
+<!-- FONTAWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" integrity="sha512-P9vJUXK+LyvAzj8otTOKzdfF1F3UYVl13+F8Fof8/2QNb8Twd6Vb+VD52I7+87tex9UXxnzPgWA3rH96RExA7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" integrity="sha512-sVSECYdnRMezwuq5uAjKQJEcu2wybeAPjU4VJQ9pCRcCY4pIpIw4YMHIOQ0CypfwHRvdSPbH++dA3O4Hihm/LQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" integrity="sha512-tk4nGrLxft4l30r9ETuejLU0a3d7LwMzj0eXjzc16JQj+5U1IeVoCuGLObRDc3+eQMUcEQY1RIDPGvuA7SNQ2w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- END FONTAWESOME -->
 
-{% block content %}
+<!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Roboto+Slab:wght@900&display=swap" rel="stylesheet">
+<!-- END GOOGLE FONTS -->
 
-{% include 'global/partials/message.html' %}
+<!-- GLOBAL CSS -->
+  <link rel="stylesheet" href="{% static 'global/css/monitoramento.css' %}">
+<!-- END GLOBAL CSS -->
 
-    <main class="main-maps-container">
-        <div class="main-content container">
-            <h1>Olá, seja bem-vindo!</h1>
-
-            <h2>What is Lorem Ipsum?
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                
-                Why do we use it?
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                
-                
-                Where does it come from?
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-                
-                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-                
-                Where can I get some?
-                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</h2>
-        </div>
-    </main>
+    <link rel="stylesheet" href="{% static 'global/css/maps.css' %}" />
+    <script src="{% static 'global/js/maps.js' %}"></script>
+  </head>
 
 
-    <div class="search-container">
-        <div class="container">
-            <form action="" class="search-form">
-                <input type="search" class="search-input" name="search">
-                <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
-            </form>
-        </div>
-    </div>
+  <body>
+    {% include 'global/partials/message.html' %}
+    {% include 'global/partials/header.html' %}
 
 
-    <div class="grid-container">
-        <div class="columns-container">
-            <div class="line-container">
+        <div id="map"></div>
+            <div id="mapa">
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDF--lFk8ATK0dY_Jc1tAcKX2axRrxvp0Q&callback=initMap&v=weekly" async></script>
+            </div>
 
+        <div class="search-container">
+            <div class="container">
+                <form action="" class="search-form">
+                    <input type="search" class="search-input" name="search">
+                    <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                </form>
             </div>
         </div>
-    </div>
-{% endblock content %}
+
+        <div class="grid-container">
+            <div class="columns-container">
+                <div class="line-container">
+                    <h1>TESTE</h1>
+                </div>
+            </div>
+        </div>
+  </body>
+</html>

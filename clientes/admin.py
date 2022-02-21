@@ -9,6 +9,9 @@ class ClienteAdmin(admin.ModelAdmin):
                     'nomecliente', 'cpf', 'email', 'data_cadastro']
 
     list_display_links = ['nomecliente', ]
+    search_fields = 'nomecliente', 'cpf', 'email'
+    list_per_page = 15
+    ordering = 'clienteid',
 
 
 admin.site.register(Cliente, ClienteAdmin)

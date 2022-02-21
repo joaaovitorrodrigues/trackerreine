@@ -1,0 +1,15 @@
+{% extends 'global/base.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h1>Adicionar Grupo</h1>
+            <hr>
+            <form action="{% url 'grupoveiculo:grupoveiculos_add' %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-success" value="Adicionar Grupo">
+            </form>
+        </div>
+    </div>
+{% endblock content %}
