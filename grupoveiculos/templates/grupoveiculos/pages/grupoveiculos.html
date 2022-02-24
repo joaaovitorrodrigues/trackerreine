@@ -1,5 +1,7 @@
 {% extends 'global/base.html' %}
 
+{% block title %}<title>Reine | Grupo de veículos</title>{% endblock title %}
+
 {% block content %}
     <div class="card">
         <div class="card-body">
@@ -27,8 +29,10 @@
                         <td>{{ grupo.email }}</td>
                         <td>
                         <a id="add-link" href="editar/">
-                            <button class="btn btn-warning" href="editar/">Editar</button>
-                            <button class="btn btn-danger" href="excluir/"><i class="fa-thin fa-trash"></i> Excluir</button>
+                            
+                            <button class="btn btn-warning" href="editar/"><i class="fa-solid fa-pen"></i>  Editar</button>
+                            
+                            <button class="btn btn-danger" href="excluir/"><i class="fa-solid fa-trash"></i>  Excluir</button>
                         </a>
                         </td>
                     </tr> 

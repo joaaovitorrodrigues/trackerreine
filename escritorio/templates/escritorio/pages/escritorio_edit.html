@@ -1,0 +1,23 @@
+{% extends 'global/base.html' %}
+{% block title %}Reine Rastreamento | Editar {% endblock title %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <h1>Editar '{{escritorio.nome_escritorio}}'</h1>
+        <hr>
+        <form action="{% url 'escritorio:escritorio_edit' %}" method="POST">
+
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <input type="submit" class="btn btn-success" value="Editar Grupo">
+        </form>
+
+
+    </div>
+</div>
+
+{% endblock content %}
+

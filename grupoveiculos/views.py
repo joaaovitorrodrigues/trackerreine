@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
@@ -7,6 +8,8 @@ from grupoveiculos.forms import GrupoveiculoForm
 from .models import Grupoveiculo
 
 
+@login_required(login_url='users:login',
+                redirect_field_name='next')
 def grupoveiculo(request):
     grupoveiculos = Grupoveiculo.objects.all()
     register_form_data = request.session.get('register_form_data', None)
@@ -23,6 +26,8 @@ def grupoveiculo(request):
                   {'grupoveiculos': grupoveiculos})"""
 
 
+@login_required(login_url='users:login',
+                redirect_field_name='next')
 def grupoveiculos_add(request):
     if request.method == "POST":
         form = GrupoveiculoForm(request.POST)
@@ -50,6 +55,8 @@ def grupoveiculos_add(request):
                   })"""
 
 
+@login_required(login_url='users:login',
+                redirect_field_name='next')
 def grupoveiculo_edit(request, id):
 
     context = {}
@@ -66,3 +73,9 @@ def grupoveiculo_edit(request, id):
 
     return render(request, 'grupoveiculos/pages/grupoveiculos_edit.html',
                   context)
+
+
+@login_required(login_url='users:login',
+                redirect_field_name='next')
+def dashboard(request):
+    return render(request, 'users/pages/dashboard.html')

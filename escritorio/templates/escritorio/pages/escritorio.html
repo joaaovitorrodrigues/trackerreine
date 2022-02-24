@@ -1,0 +1,55 @@
+{% extends 'global/base.html' %}
+{% load static %}
+{% block title %}<title>Reine | Escritório</title>{% endblock title %}
+
+
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-body">
+            <h1>Escritorio</h1>
+            <hr>
+            <a id="add-link" href="adicionar/">
+                <button class="btn btn-success" href="adicionar/"><i class="fa-solid fa-plus"></i> Adicionar</button>
+            </a>
+            <a id="add-link" href="http://127.0.0.1:8000/monitoramento/">
+                <button class="btn btn-danger"><i class="fa-solid fa-backward"></i> Voltar</button>
+            </a>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID Escritório</th>
+                        <th>Nome Escritório</th>
+                        <th>Descrição</th>
+                        <th>E-mail</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                <!-- LAÇO FOR QUE EXIBE NA PÁGINA AS INFORMAÇÕES CADASTRADAS NO BANCO -->
+                {% for escritorio in escritorio %}
+                    <tr>
+                        <td>{{ escritorio.id }}</td>
+                        <td>{{ escritorio.nome_escritorio }}</td>
+                        <td>{{ escritorio.descricao_escritorio }}</td>
+                        <td>{{ escritorio.email }}</td>
+                        <td>
+                <!-- BOTÕES COM LINKS PARA CRUD -->
+                        <a id="edit-link" href="editar/">
+                            
+                            <button class="btn btn-warning"><i class="fa-solid fa-pen"></i>  Editar</button>
+                            
+                            <button class="btn btn-danger" href="excluir/"><i class="fa-solid fa-trash"></i>  Excluir</button>
+                        </a>
+                        </td>
+                    </tr> 
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}

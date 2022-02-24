@@ -5,7 +5,7 @@
   <head>
     {% block title %}<title>Reine | Monitoramento</title>{% endblock title %}
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-
+    
 <!-- FONTAWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" integrity="sha512-P9vJUXK+LyvAzj8otTOKzdfF1F3UYVl13+F8Fof8/2QNb8Twd6Vb+VD52I7+87tex9UXxnzPgWA3rH96RExA7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" integrity="sha512-sVSECYdnRMezwuq5uAjKQJEcu2wybeAPjU4VJQ9pCRcCY4pIpIw4YMHIOQ0CypfwHRvdSPbH++dA3O4Hihm/LQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -13,21 +13,26 @@
 <!-- END FONTAWESOME -->
 
 <!-- GOOGLE FONTS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Roboto+Slab:wght@900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Roboto+Slab:wght@900&display=swap" rel="stylesheet">
 <!-- END GOOGLE FONTS -->
 
 <!-- GLOBAL CSS -->
-  <link rel="stylesheet" href="{% static 'global/css/monitoramento.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/monitoramento.css' %}">
+    
 <!-- END GLOBAL CSS -->
 
     <link rel="stylesheet" href="{% static 'global/css/maps.css' %}" />
     <script src="{% static 'global/js/maps.js' %}"></script>
+    <script src="{% static 'global/js/scripts.js' %}"></script>
   </head>
 
 
   <body>
+    {% include 'global/partials/menu.html' %}
+
     {% include 'global/partials/message.html' %}
     {% include 'global/partials/header.html' %}
 

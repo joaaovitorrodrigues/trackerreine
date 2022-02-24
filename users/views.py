@@ -10,6 +10,8 @@ from django.urls import reverse
 from .forms import LoginForm, RegisterForm
 
 
+@login_required(login_url='users:login',
+                redirect_field_name='next')
 def register_view(request):
     register_form_data = request.session.get('register_form_data', None)
     form = RegisterForm(register_form_data)

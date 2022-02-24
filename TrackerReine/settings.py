@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'fontawesomefree',
     # Apps
     'users.apps.UsersConfig',
     'monitoramento.apps.MonitoramentoConfig',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'veiculos.apps.VeiculosConfig',
     'grupoveiculos.apps.GrupoveiculosConfig',
     'dashboard.apps.DashboardConfig',
+    'escritorio.apps.EscritorioConfig',
 ]
 
 MIDDLEWARE = [
@@ -91,7 +93,7 @@ DATABASES = {
         },
         'NAME': 'trackerreine',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'sucesso21reine',
         'HOST': 'localhost',
         'PORT': '3306',
     }
