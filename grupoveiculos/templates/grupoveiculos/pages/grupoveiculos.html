@@ -10,6 +10,9 @@
             <a id="add-link" href="adicionar/">
                 <button class="btn btn-success" href="adicionar/"><i class="fa-solid fa-plus"></i> Adicionar</button>
             </a>
+            <a id="add-link" href="http://127.0.0.1:8000/monitoramento/">
+                <button class="btn btn-danger"><i class="fa-solid fa-backward"></i> Voltar</button>
+            </a>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -28,12 +31,8 @@
                         <td>{{ grupo.descricao_grupo }}</td>
                         <td>{{ grupo.email }}</td>
                         <td>
-                        <a id="add-link" href="editar/">
+                            <a class="btn btn-warning" href="{% url 'grupoveiculo:grupoveiculos_edit' grupo.id %}"><i class="fa-solid fa-pen"></i>  Editar</a>
                             
-                            <button class="btn btn-warning" href="editar/"><i class="fa-solid fa-pen"></i>  Editar</button>
-                            
-                            <button class="btn btn-danger" href="excluir/"><i class="fa-solid fa-trash"></i>  Excluir</button>
-                        </a>
                         </td>
                     </tr> 
                 {% endfor %}

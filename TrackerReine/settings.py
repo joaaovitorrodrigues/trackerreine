@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'grupoveiculos.apps.GrupoveiculosConfig',
     'dashboard.apps.DashboardConfig',
     'escritorio.apps.EscritorioConfig',
+    'cadastros.apps.CadastrosConfig',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'pt'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Sao_Paulo'
 

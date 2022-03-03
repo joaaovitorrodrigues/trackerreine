@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -12,6 +13,14 @@ from .models import Grupoveiculo
                 redirect_field_name='next')
 def grupoveiculo(request):
     grupoveiculos = Grupoveiculo.objects.all()
+
+    context = {
+        'grupoveiculos': grupoveiculos
+    }
+    return render(request,
+                  'grupoveiculos/pages/grupoveiculos.html', context)
+
+    """grupoveiculos = Grupoveiculo.objects.all()
     register_form_data = request.session.get('register_form_data', None)
     form = GrupoveiculoForm(register_form_data)
     return render(request, 'grupoveiculos/pages/grupoveiculos.html', {
@@ -19,7 +28,7 @@ def grupoveiculo(request):
         'form': form,
         'form_action': reverse('grupoveiculo:grupoveiculos_add'),
     })
-    """# Pega os objetos do banco (grupoveiculos)
+    # Pega os objetos do banco (grupoveiculos)
     grupoveiculos = Grupoveiculo.objects.all()
 
     return render(request, 'grupoveiculos/pages/grupoveiculos.html',
@@ -29,50 +38,38 @@ def grupoveiculo(request):
 @login_required(login_url='users:login',
                 redirect_field_name='next')
 def grupoveiculos_add(request):
-    if request.method == "POST":
-        form = GrupoveiculoForm(request.POST)
+    form = GrupoveiculoForm(request.POST or None)
 
+    if request.POST:
         if form.is_valid():
             form.save()
-            messages.success(
-                request, 'Seu usuário foi criado, por favor, faça o login.')
-        return redirect('../')
+            return redirect('grupoveiculo:grupoveiculos')
 
-    # Cria o formulário
-    form = GrupoveiculoForm()
+    context = {
+        'form': form
+    }
+
     return render(request, 'grupoveiculos/pages/grupoveiculos_add.html',
-                  {'form': form})
-
-    """if request.POST:
-        if form.is_valid():
-            form.save()
-            return redirect('gruposveiculos')
-
-    # Renderiza no template
-    return render(request, 'grupoveiculos/pages/grupoveiculos_add.html',
-                  {
-                      'form': form
-                  })"""
+                  context)
 
 
 @login_required(login_url='users:login',
                 redirect_field_name='next')
 def grupoveiculo_edit(request, id):
+    grupoveiculo = Grupoveiculo.objects.get(pk=id)
 
-    context = {}
+    form = GrupoveiculoForm(request.POST or None, instance=grupoveiculo)
 
-    obj = get_object_or_404(GrupoveiculoForm, id=id)
+    if request.POST:
+        if form.is_valid():
+            form.save()
+            return redirect('grupoveiculo:grupoveiculos')
 
-    form = GrupoveiculoForm(request.POST or None, instance=obj)
+    context = {
+        'form': form,
+    }
 
-    if form.is_valid():
-        form.save()
-        return redirect('../')
-
-    context['form'] = form
-
-    return render(request, 'grupoveiculos/pages/grupoveiculos_edit.html',
-                  context)
+    return render(request, 'grupoveiculos/pages/grupoveiculos_edit.html', context)
 
 
 @login_required(login_url='users:login',
