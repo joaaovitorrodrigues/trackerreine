@@ -20,6 +20,10 @@ def grupoveiculo(request):
     return render(request,
                   'grupoveiculos/pages/grupoveiculos.html', context)
 
+    def get_queryset(self):
+        self.object_list = Grupoveiculo.objects.filter(username=self.user)
+        return self.object_list
+
     """grupoveiculos = Grupoveiculo.objects.all()
     register_form_data = request.session.get('register_form_data', None)
     form = GrupoveiculoForm(register_form_data)
